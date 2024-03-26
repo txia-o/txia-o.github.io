@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo Theme Stack Starter</title><link>/</link><description>Recent content on Hugo Theme Stack Starter</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 07 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>/p/hello-world/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>/p/hello-world/</guid><description>&lt;img src="/p/hello-world/cover.jpg" alt="Featured image of post Hello World" />&lt;p>Welcome to Hugo theme Stack. This is your first post. Edit or delete it, then start writing!&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>水里面的博客</title><link>/</link><description>Recent content on 水里面的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 26 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>永恒之战</title><link>/p/forever-war/</link><pubDate>Tue, 26 Mar 2024 00:00:00 +0000</pubDate><guid>/p/forever-war/</guid><description>&lt;img src="/p/forever-war/cover.png" alt="Featured image of post 永恒之战" />&lt;h1 id="永恒之战">&lt;strong>《永恒之战》&lt;/strong>&lt;/h1>
+&lt;h2 id="verse-1">&lt;strong>Verse 1&lt;/strong>&lt;/h2>
+&lt;p>在天空的边缘，太阳升起
+燃烧着烈焰，照亮黑暗的宇宙
+而月亮则悄然登场，静静地等待
+她的银色光芒，如梦如幻&lt;/p>
+&lt;h2 id="pre-chorus">&lt;strong>Pre-Chorus&lt;/strong>&lt;/h2>
+&lt;p>太阳的怒火，月亮的神秘
+两者之间，永恒的对抗
+他们在星空中舞动，交织着命运
+是爱？还是仇恨？我们无法解释&lt;/p>
+&lt;h2 id="chorus">&lt;strong>Chorus&lt;/strong>&lt;/h2>
+&lt;p>太阳和月亮，永远相互追逐
+在黑夜和白昼之间，他们交替
+太阳的热情，月亮的冷漠
+这是一场摇滚的战斗，永不停息&lt;/p>
+&lt;h2 id="verse-2">&lt;strong>Verse 2&lt;/strong>&lt;/h2>
+&lt;p>太阳的吼声，如雷霆轰鸣
+月亮的微笑，隐藏着秘密
+他们在宇宙的舞台上，燃烧着激情
+是宿命？还是自由意志？&lt;/p>
+&lt;h2 id="pre-chorus-1">&lt;strong>Pre-Chorus&lt;/strong>&lt;/h2>
+&lt;p>太阳的怒火，月亮的神秘
+两者之间，永恒的对抗
+他们在星空中舞动，交织着命运
+是爱？还是仇恨？我们无法解释&lt;/p>
+&lt;h2 id="chorus-1">&lt;strong>Chorus&lt;/strong>&lt;/h2>
+&lt;p>太阳和月亮，永远相互追逐
+在黑夜和白昼之间，他们交替
+太阳的热情，月亮的冷漠
+这是一场摇滚的战斗，永不停息&lt;/p>
+&lt;h2 id="bridge">&lt;strong>Bridge&lt;/strong>&lt;/h2>
+&lt;p>他们的光芒，交织成旋律
+在宇宙的舞台上，奏响摇滚的乐章
+太阳的火焰，月亮的寂静
+这是一场摇滚的战斗，永不停息&lt;/p>
+&lt;h2 id="chorus-2">&lt;strong>Chorus&lt;/strong>&lt;/h2>
+&lt;p>太阳和月亮，永远相互追逐
+在黑夜和白昼之间，他们交替
+太阳的热情，月亮的冷漠
+这是一场摇滚的战斗，永不停息&lt;/p>
+&lt;hr>
+&lt;p>&lt;em>（编者注：这是一首虚构的歌词，旨在表达太阳和月亮之间的神秘对抗。）&lt;/em>&lt;/p></description></item><item><title>Hello World</title><link>/p/hello-world/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>/p/hello-world/</guid><description>&lt;img src="/p/hello-world/cover.jpg" alt="Featured image of post Hello World" />&lt;p>Welcome to Hugo theme Stack. This is your first post. Edit or delete it, then start writing!&lt;/p>
 &lt;p>For more information about this theme, check the documentation: &lt;a class="link" href="https://stack.jimmycai.com/" target="_blank" rel="noopener"
 >https://stack.jimmycai.com/&lt;/a>&lt;/p>
 &lt;p>Want a site like this? Check out &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack-starter" target="_blank" rel="noopener"
