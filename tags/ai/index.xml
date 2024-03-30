@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on 水里面的博客</title><link>/tags/ai/</link><description>Recent content in AI on 水里面的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 26 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>【AI笔记】一、本地聊天大模型支持搜索引擎</title><link>/p/ai-note-1/</link><pubDate>Tue, 26 Mar 2024 00:00:00 +0000</pubDate><guid>/p/ai-note-1/</guid><description>&lt;p>最新闲来无事，用streamlit手撸了一个本地的聊天大模型，支持网页搜索。&lt;/p>
 &lt;p>先放一张效果图：&lt;/p>
-&lt;p>&lt;img src="/demo.png"
+&lt;p>&lt;img src="/p/ai-note-1/demo.png"
+width="1271"
+height="1312"
+srcset="/p/ai-note-1/demo_hu489fae0b987479a03d147f6e40c9a073_597071_480x0_resize_box_3.png 480w, /p/ai-note-1/demo_hu489fae0b987479a03d147f6e40c9a073_597071_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 alt="聊天机器人对话截图"
+class="gallery-image"
+data-flex-grow="96"
+data-flex-basis="232px"
 >&lt;/p>
 &lt;p>从日志可以看到是有先搜索再请求大模型：&lt;/p>
 &lt;p>&lt;img src="/p/ai-note-1/backlog.png"
