@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>避暑天堂：夏日乐享指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #cbebff 100%); /* Subtle gradient background */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Custom scrollbar for content area */
+        .content-scrollable::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .content-scrollable::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .content-scrollable::-webkit-scrollbar-thumb {
+            background: #a7d9ff;
+            border-radius: 10px;
+        }
+
+        .content-scrollable::-webkit-scrollbar-thumb:hover {
+            background: #7acaff;
+        }
+
+        .blog-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px; /* Max width for larger screens */
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Deeper shadow */
+            overflow: hidden;
+            min-height: 700px; /* Minimum height for the blog container */
+        }
+
+        .sidebar {
+            width: 280px; /* Fixed width for sidebar */
+            flex-shrink: 0; /* Ensure sidebar maintains its width */
+            background: linear-gradient(180deg, #e0f2fe 0%, #bfdbfe 100%); /* Light blue gradient */
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: inset -5px 0 15px -5px rgba(0, 0, 0, 0.05); /* Inner shadow */
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #1e40af; /* blue-800 */
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: -0.025em; /* tracking-tight */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 12px; /* More rounded */
+            color: #3b82f6; /* blue-500 */
+            font-weight: 500; /* font-medium */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for nav items */
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #1e40af; /* blue-800 */
+            transform: translateY(-2px); /* Lift effect */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Enhanced shadow on hover */
+        }
+
+        .nav-item.active {
+            background: linear-gradient(45deg, #93c5fd 0%, #60a5fa 100%); /* Active gradient */
+            color: white;
+            font-weight: 600; /* font-semibold */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            border-radius: 12px;
+        }
+
+        .nav-item svg {
+            margin-right: 12px;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        .nav-item span {
+            white-space: nowrap; /* Prevent text wrapping on larger screens */
+            overflow: hidden; /* Hide overflow content */
+            text-overflow: ellipsis; /* Show ellipsis for truncated text */
+            flex-grow: 1; /* Allow span to take available space */
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: white;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            position: relative;
+            overflow: hidden; /* For dynamic effects */
+        }
+
+        .content-scrollable {
+            overflow-y: auto; /* Enable scrolling for content */
+            max-height: calc(100vh - 40px); /* Adjust based on padding and container height */
+        }
+
+        .content-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            height: 100%; /* Ensure content section takes full height */
+        }
+
+        .content-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #1e40af; /* blue-800 */
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            letter-spacing: -0.025em;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #93c5fd 0%, #60a5fa 100%);
+            border-radius: 2px;
+        }
+
+        .content-section h3 {
+            font-size: 1.75rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: #2563eb; /* blue-700 */
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 5px solid #60a5fa; /* Accent border */
+            padding-left: 15px;
+        }
+
+        .content-section p {
+            font-size: 1.125rem; /* text-lg */
+            line-height: 1.8;
+            color: #4b5563; /* gray-700 */
+            margin-bottom: 15px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        .content-section ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: #374151; /* gray-800 */
+            line-height: 1.6;
+        }
+
+        .content-section ul li::before {
+            content: '•'; /* Bullet point */
+            position: absolute;
+            left: 0;
+            color: #60a5fa; /* blue-500 */
+            font-size: 1.5rem;
+            line-height: 1;
+            top: 0;
+        }
+
+        .content-section strong {
+            color: #1e40af; /* blue-800 */
+            font-weight: 600;
+        }
+
+        /* Dynamic light blob effect */
+        .light-blob {
+            position: absolute;
+            background: radial-gradient(circle, rgba(147, 197, 253, 0.7) 0%, rgba(96, 165, 250, 0) 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: blob-move 20s infinite alternate;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+        }
+
+        .blob-2 {
+            width: 250px;
+            height: 250px;
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        @keyframes blob-move {
+            0% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -30px) scale(1.05); }
+            50% { transform: translate(-10px, 40px) scale(0.95); }
+            75% { transform: translate(30px, 10px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* Gemini API specific styles */
+        .gemini-button {
+            background: linear-gradient(45deg, #f97316 0%, #fbbf24 100%); /* Orange-yellow gradient */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            border: none;
+            outline: none;
+        }
+
+        .gemini-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.6);
+        }
+
+        .gemini-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(251, 191, 36, 0.3);
+        }
+
+        .gemini-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .gemini-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .gemini-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 600px;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            position: relative;
+            max-height: 80vh; /* Limit modal height */
+            overflow-y: auto; /* Enable scrolling within modal */
+        }
+
+        .gemini-modal-overlay.active .gemini-modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gemini-modal-content h3 {
+            font-size: 1.8rem;
+            color: #1e40af;
+            margin-bottom: 20px;
+            text-align: center;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        /* Styles for content generated by Markdown in modal */
+        .gemini-modal-content .markdown-content h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .gemini-modal-content .markdown-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #4b5563;
+            margin-bottom: 10px;
+        }
+        .gemini-modal-content .markdown-content ul {
+            list-style: disc; /* Use actual disc bullets */
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+        .gemini-modal-content .markdown-content ul li {
+            font-size: 1rem;
+            color: #374151;
+            line-height: 1.5;
+            margin-bottom: 5px;
+            padding-left: 0; /* Reset custom bullet padding */
+        }
+        .gemini-modal-content .markdown-content ul li::before {
+            content: none; /* Remove custom bullet */
+        }
+        .gemini-modal-content .markdown-content strong {
+            color: #1e40af;
+            font-weight: 700;
+        }
+        .gemini-modal-content .markdown-content em {
+            font-style: italic;
+            color: #3b82f6;
+        }
+
+
+        .gemini-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .gemini-modal-close:hover {
+            color: #6b7280;
+        }
+
+        .loading-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            color: #2563eb;
+            margin-top: 20px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .blog-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+            .sidebar {
+                width: 100%; /* On smaller screens, sidebar goes full width */
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                border-bottom-left-radius: 0;
+                border-top-right-radius: 20px;
+                box-shadow: inset 0 -5px 15px -5px rgba(0, 0, 0, 0.05);
+                padding-bottom: 20px;
+            }
+            .sidebar-title {
+                margin-bottom: 20px;
+            }
+            .nav-item {
+                margin-bottom: 5px;
+            }
+            .nav-item span {
+                white-space: normal; /* Allow wrapping on small screens if sidebar is full width */
+                overflow: visible;
+                text-overflow: clip;
+            }
+            .main-content {
+                padding: 30px 20px;
+                border-top-right-radius: 0;
+            }
+            .content-section h2 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            .content-section h3 {
+                font-size: 1.5rem;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            .content-section p, .content-section ul li {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .sidebar {
+                padding: 20px 15px;
+            }
+            .sidebar-title {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+            .nav-item {
+                padding: 12px 15px;
+            }
+            .main-content {
+                padding: 20px 15px;
+            }
+            .content-section h2 {
+                font-size: 1.8rem;
+            }
+            .content-section h3 {
+                font-size: 1.3rem;
+            }
+            .gemini-modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-container">
+        <aside class="sidebar">
+            <h1 class="sidebar-title">避暑天堂</h1>
+            <nav>
+                <div class="nav-item active" data-target="home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span>首页</span>
+                </div>
+                <div class="nav-item" data-target="cooling-secrets">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-snowflake"><path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>
+                    <span>清凉秘籍</span>
+                </div>
+                <div class="nav-item" data-target="mosquito-tips">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mosquito"><path d="M17 21a5 5 0 0 0-10 0"/><path d="M12 12v9"/><path d="M12 12l4-4"/><path d="M12 12l-4-4"/><path d="M12 12l4 4"/><path d="M12 12l-4 4"/><path d="M2 12h1.5a4 4 0 0 1 0 8H2"/><path d="M22 12h-1.5a4 4 0 0 0 0 8H22"/><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/></svg>
+                    <span>驱蚊妙招</span>
+                </div>
+                <div class="nav-item" data-target="summer-delights">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ice-cream"><path d="M12 2a8 8 0 0 1 8 8v13H4V10a8 8 0 0 1 8-8Z"/><path d="M12 17a4 4 0 0 0 0-8v8Z"/><path d="M12 17H4"/><path d="M12 17h8"/><path d="M12 10h8"/></svg>
+                    <span>夏日美食</span>
+                </div>
+                <div class="nav-item" data-target="outdoor-fun">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="8"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34-1.41 1.41"/></svg>
+                    <span>户外乐享</span>
+                </div>
+                <div class="nav-item" data-target="safe-summer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    <span>安全度夏</span>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content content-scrollable relative">
+            <div class="light-blob blob-1"></div>
+            <div class="light-blob blob-2"></div>
+
+            <section id="home" class="content-section active">
+                <h2>欢迎来到避暑天堂！</h2>
+                <p>夏天，是阳光、沙滩和冰镇汽水的季节，但也可能带来闷热和蚊虫的烦恼。别担心！“避暑天堂”将为您揭示如何巧妙应对夏日挑战，让您尽情享受这个充满活力的季节。</p>
+                <p>无论您是想了解<strong>科学的降温方法</strong>，还是寻找<strong>有效的驱蚊秘诀</strong>，亦或是探索<strong>夏日专属的美食与户外活动</strong>，这里都有您需要的一切。让我们一起，将这个夏天变成一个清凉、舒适、充满乐趣的避暑天堂吧！</p>
+                <h3>夏日寄语</h3>
+                <p>愿您的夏天充满欢声笑语，清风拂面，无蚊虫侵扰，每一天都如同冰镇西瓜般甜美多汁！</p>
+                <p>请点击左侧导航栏，探索更多夏日精彩内容。</p>
+            </section>
+
+            <section id="cooling-secrets" class="content-section">
+                <h2>清凉秘籍：告别闷热，拥抱清爽</h2>
+                <p>夏日炎炎，如何保持身体的清爽与舒适？了解身体的奥秘，掌握科学的降温方法，让您轻松度过每一个闷热的日子。</p>
+
+                <h3>🌡️ 知识科普：身体的“空调”系统</h3>
+                <p>我们的身体拥有一套精密的<strong>体温调节系统</strong>。当环境温度升高时，身体会通过<strong>排汗</strong>来蒸发热量，从而达到降温的目的。同时，皮肤表面的血管会扩张，增加散热。然而，<strong>高湿度</strong>会阻碍汗液蒸发，使我们感到更加闷热和不适。</p>
+                <ul>
+                    <li><strong>汗液蒸发：</strong> 汗液从皮肤表面蒸发时会带走热量，这是身体最主要的降温方式。</li>
+                    <li><strong>血管扩张：</strong> 皮肤血管扩张，增加血液流向体表，有助于热量散发。</li>
+                    <li><strong>湿度影响：</strong> 空气湿度越大，汗液越难蒸发，降温效果越差。</li>
+                </ul>
+
+                <h3>💡 操作建议：实用降温小妙招</h3>
+                <ul>
+                    <li><strong>充足饮水：</strong> 保持水分充足是预防中暑的关键。多喝水、淡盐水或无糖饮料，避免酒精和咖啡因。</li>
+                    <li><strong>轻薄透气衣物：</strong> 选择棉麻等天然材质、颜色浅、宽松的衣物，有助于汗液蒸发和空气流通。</li>
+                    <li><strong>冷水降温：</strong> 经常用冷水洗脸、冲手腕，或进行温水淋浴，能有效降低体表温度。</li>
+                    <li><strong>巧用空调与风扇：</strong> 合理设置空调温度（建议26-28℃），配合风扇使用，能加速空气流通，提高降温效率。</li>
+                    <li><strong>自然通风：</strong> 早晚开启门窗，利用对流风带走室内热量。白天阳光强烈时可拉上窗帘，阻挡热量进入。</li>
+                    <li><strong>冰敷策略：</strong> 在脉搏点（如手腕、颈部、腋下）放置冰袋或湿毛巾，能快速降低核心体温。</li>
+                </ul>
+            </section>
+
+            <section id="mosquito-tips" class="content-section">
+                <h2>驱蚊妙招：告别叮咬，安享夏夜</h2>
+                <p>蚊虫叮咬不仅瘙痒难耐，还可能传播疾病。了解蚊子的习性，采取科学的驱蚊方法，让您和家人远离蚊虫困扰。</p>
+
+                <h3>🦟 知识科普：蚊子的“攻击”策略</h3>
+                <p>蚊子通过感知人体散发的<strong>二氧化碳、热量和乳酸</strong>来定位目标。雌蚊需要吸血来产卵，它们通常在黄昏和黎明时分最为活跃。<strong>积水</strong>是蚊子滋生的温床，一个硬币大小的积水就能孵化出数百只蚊子。</p>
+                <ul>
+                    <li><strong>气味追踪：</strong> 蚊子对二氧化碳、乳酸和汗液中的其他化学物质高度敏感。</li>
+                    <li><strong>热量感知：</strong> 它们能感知到人体的热量，尤其是在夜间。</li>
+                    <li><strong>繁殖环境：</strong> 蚊卵在水中孵化，幼虫和蛹都在水中生长。</li>
+                </ul>
+
+                <h3>🛡️ 操作建议：多重防护，滴水不漏</h3>
+                <ul>
+                    <li><strong>清除积水：</strong> 定期清理家中及周围的积水，如花盆底盘、废弃容器、排水沟等，从源头切断蚊子滋生。</li>
+                    <li><strong>安装纱窗纱门：</strong> 确保门窗紧闭，并安装完好无损的纱窗纱门，阻止蚊子进入室内。</li>
+                    <li><strong>使用驱蚊产品：</strong> 
+                        <ul>
+                            <li><strong>化学驱蚊剂：</strong> 含有DEET（避蚊胺）或Picaridin（派卡瑞丁）的驱蚊液效果显著，按说明使用。</li>
+                            <li><strong>天然驱蚊剂：</strong> 柠檬桉叶油、香茅油等天然成分也有一定的驱蚊效果，但需频繁涂抹。</li>
+                        </ul>
+                    </li>
+                    <li><strong>穿浅色长袖衣物：</strong> 蚊子更喜欢深色衣物。在户外活动时，穿着浅色长袖长裤可以减少皮肤暴露面积。</li>
+                    <li><strong>使用蚊帐：</strong> 睡前使用蚊帐是物理防蚊最有效且安全的方法，尤其适合儿童。</li>
+                    <li><strong>点燃蚊香或使用电蚊液：</strong> 在室内使用，注意通风，避免长时间吸入。</li>
+                    <li><strong>植物驱蚊：</strong> 种植薄荷、迷迭香、柠檬草等植物，它们散发的气味对蚊子有一定驱避作用。</li>
+                </ul>
+            </section>
+
+            <section id="summer-delights" class="content-section">
+                <h2>夏日美食：舌尖上的清凉盛宴</h2>
+                <p>夏天是味蕾的狂欢季节！新鲜的蔬果、清爽的饮品，不仅能满足口腹之欲，更能帮助身体补充水分，抵抗酷热。</p>
+
+                <h3>🍉 知识科普：吃出清凉与健康</h3>
+                <p>许多夏季食物富含水分、维生素和矿物质，有助于<strong>补充汗液流失</strong>的电解质，并能通过其<strong>寒凉的性质</strong>帮助身体降温。例如，西瓜、黄瓜等瓜类蔬菜含水量高达90%以上，是天然的补水神器。</p>
+                <ul>
+                    <li><strong>高水分食物：</strong> 帮助身体补充流失的水分，维持电解质平衡。</li>
+                    <li><strong>清热解暑：</strong> 某些食物具有中医理论中的清热解暑功效。</li>
+                    <li><strong>易消化：</strong> 夏季宜选择清淡易消化的食物，减轻肠胃负担。</li>
+                </ul>
+
+                <h3>🍽️ 操作建议：夏日餐桌新主张</h3>
+                <ul>
+                    <li><strong>多吃瓜果：</strong> 西瓜、哈密瓜、甜瓜、黄瓜、番茄等，直接食用或制作沙拉、果汁。</li>
+                    <li><strong>清爽沙拉：</strong> 以新鲜蔬菜、水果、少量优质蛋白（如鸡胸肉、虾仁）为主，搭配清淡酱汁。</li>
+                    <li><strong>冰镇饮品：</strong> 自制柠檬水、薄荷茶、水果冰沙，避免过多甜食和含糖饮料。</li>
+                    <li><strong>凉拌菜：</strong> 凉拌木耳、海带丝、藕片等，开胃又健康。</li>
+                    <li><strong>绿豆汤与银耳羹：</strong> 传统的解暑佳品，清热去火，滋阴润燥。</li>
+                    <li><strong>少油少盐：</strong> 烹饪方式以蒸、煮、凉拌为主，减少油炸和辛辣食物，减轻身体负担。</li>
+                    <li><strong>自制冰棒：</strong> 用新鲜水果汁或酸奶自制冰棒，健康又美味。</li>
+                </ul>
+
+                <button id="getSummerDrinkBtn" class="gemini-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="M9.9 10.8c.3.9 1.3 1.8 2.4 2.5.6.3 1.2.6 1.8.8"/><path d="M12 21.2v-4"/><path d="M17.5 17.5 14 14"/><path d="M19.3 12.7 16 16"/><path d="M21.2 12h-4"/><path d="M17.5 6.5 14 10"/><path d="M19.3 11.3 16 8"/><path d="M12 2.8v4"/><path d="M6.5 6.5 10 10"/><path d="M4.7 11.3 8 8"/><path d="M2.8 12h4"/><path d="M6.5 17.5 10 14"/><path d="M4.7 12.7 8 16"/></svg>
+                    <span>✨夏日特饮推荐✨</span>
+                </button>
+
+                <div id="summerDrinkModal" class="gemini-modal-overlay">
+                    <div class="gemini-modal-content">
+                        <button class="gemini-modal-close">&times;</button>
+                        <h3 id="modalTitle">夏日特饮推荐</h3>
+                        <div id="modalContent">
+                            <div class="loading-indicator">
+                                <div class="loading-spinner"></div>
+                                <span>正在生成中...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="outdoor-fun" class="content-section">
+                <h2>户外乐享：阳光下的活力与乐趣</h2>
+                <p>夏天是户外活动的黄金季节！在享受大自然的同时，也要注意防晒和安全，让每一次户外体验都充满乐趣。</p>
+
+                <h3>☀️ 知识科普：户外活动的益处与风险</h3>
+                <p>适度的户外活动有助于<strong>增强体质、改善心情</strong>，并能接触阳光促进维生素D合成。然而，夏季紫外线强烈，长时间暴露可能导致<strong>晒伤、中暑</strong>等风险。选择合适的时间和地点，做好防护至关重要。</p>
+                <ul>
+                    <li><strong>身心健康：</strong> 户外活动能缓解压力，促进血液循环。</li>
+                    <li><strong>维生素D：</strong> 阳光是维生素D的天然来源，但需适度。</li>
+                    <li><strong>热射病风险：</strong> 高温高湿环境下的剧烈运动易导致中暑。</li>
+                </ul>
+
+                <h3>🏞️ 操作建议：安全玩转夏日户外</h3>
+                <ul>
+                    <li><strong>避开高温时段：</strong> 尽量选择清晨或傍晚进行户外活动，避开上午10点到下午4点紫外线最强、气温最高的时段。</li>
+                    <li><strong>做好防晒：</strong> 涂抹防晒霜（SPF30+，PA+++），戴宽边帽、太阳镜，穿防晒衣。</li>
+                    <li><strong>补充水分：</strong> 随身携带足够的水或运动饮料，少量多次饮用。</li>
+                    <li><strong>选择水上活动：</strong> 游泳、水上乐园、漂流等是夏季消暑的最佳选择，既能运动又能降温。</li>
+                    <li><strong>林荫徒步：</strong> 选择有树荫遮蔽的公园或山林小径进行徒步，享受自然凉意。</li>
+                    <li><strong>夜间活动：</strong> 傍晚或夜晚进行散步、夜跑、观星、露营等，感受夏夜的清凉与静谧。</li>
+                    <li><strong>注意休息：</strong> 户外活动期间，每隔一段时间就到阴凉处休息，避免过度劳累。</li>
+                </ul>
+            </section>
+
+            <section id="safe-summer" class="content-section">
+                <h2>安全度夏：健康无忧，乐享清凉</h2>
+                <p>夏日虽美，但潜在的安全隐患也不容忽视。了解并掌握必要的安全知识，才能确保您和家人度过一个健康、安心的夏天。</p>
+
+                <h3>🚨 知识科普：夏季常见风险与预防</h3>
+                <p>夏季是<strong>中暑、晒伤、溺水、食物中毒</strong>等意外高发的季节。了解这些风险的成因和早期症状，能帮助我们及时采取预防措施或进行紧急处理。</p>
+                <ul>
+                    <li><strong>中暑：</strong> 身体在高温下无法有效散热，导致体温过高。</li>
+                    <li><strong>晒伤：</strong> 紫外线对皮肤造成损伤，引起红肿、疼痛。</li>
+                    <li><strong>溺水：</strong> 夏季水上活动增多，溺水风险随之增加。</li>
+                    <li><strong>食物中毒：</strong> 高温易使食物变质，导致细菌滋生。</li>
+                </ul>
+
+                <h3>✅ 操作建议：夏日安全守则</h3>
+                <ul>
+                    <li><strong>预防中暑：</strong>
+                        <ul>
+                            <li>避免长时间暴露在高温下，尤其避免剧烈运动。</li>
+                            <li>出现头晕、恶心、乏力等症状时，立即转移到阴凉处休息，补充水分。</li>
+                            <li>严重中暑（如昏迷）需立即就医。</li>
+                        </ul>
+                    </li>
+                    <li><strong>防晒护肤：</strong>
+                        <ul>
+                            <li>出门前20分钟涂抹防晒霜，每2-3小时补涂一次。</li>
+                            <li>尽量待在阴凉处，尤其是在中午。</li>
+                            <li>晒后及时进行皮肤修复，如使用芦荟胶等。</li>
+                        </ul>
+                    </li>
+                    <li><strong>水上安全：</strong>
+                        <ul>
+                            <li>不在非指定水域游泳，不单独下水。</li>
+                            <li>儿童在水中必须有成人全程监护。</li>
+                            <li>学习基本的急救和心肺复苏（CPR）知识。</li>
+                        </ul>
+                    </li>
+                    <li><strong>食品安全：</strong>
+                        <ul>
+                            <li>食物煮熟煮透，生熟分开。</li>
+                            <li>隔夜食物彻底加热后再食用。</li>
+                            <li>注意食物储存，避免在室温下长时间放置。</li>
+                        </ul>
+                    </li>
+                    <li><strong>用电安全：</strong>
+                        <ul>
+                            <li>检查电器线路，避免过载。</li>
+                            <li>空调、风扇等电器长时间使用注意休息。</li>
+                            <li>雷雨天气拔掉电器插头。</li>
+                        </ul>
+                    </li>
+                    <li><strong>宠物安全：</strong>
+                        <ul>
+                            <li>夏季高温，宠物也易中暑，注意提供充足饮水和阴凉环境。</li>
+                            <li>遛狗避开高温时段，避免烫伤爪子。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.content-section');
+            const mainContent = document.querySelector('.main-content');
+
+            // Function to show a specific section
+            function showSection(targetId) {
+                // Remove active class from all nav items and content sections
+                navItems.forEach(item => item.classList.remove('active'));
+                contentSections.forEach(section => section.classList.remove('active'));
+
+                // Add active class to the clicked nav item
+                const activeNavItem = document.querySelector(`.nav-item[data-target="${targetId}"]`);
+                if (activeNavItem) {
+                    activeNavItem.classList.add('active');
+                }
+
+                // Add active class to the corresponding content section
+                const activeContentSection = document.getElementById(targetId);
+                if (activeContentSection) {
+                    activeContentSection.classList.add('active');
+                    // Scroll to top of the content section
+                    mainContent.scrollTop = 0;
+                }
+            }
+
+            // Add click event listeners to navigation items
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetId = item.dataset.target;
+                    showSection(targetId);
+                });
+            });
+
+            // Initial load: ensure home section is active
+            showSection('home');
+
+            // Gemini API Integration for Summer Drink Recommendation
+            const getSummerDrinkBtn = document.getElementById('getSummerDrinkBtn');
+            const summerDrinkModal = document.getElementById('summerDrinkModal');
+            const modalContentDiv = document.getElementById('modalContent');
+            const modalCloseBtn = summerDrinkModal.querySelector('.gemini-modal-close');
+
+            getSummerDrinkBtn.addEventListener('click', async () => {
+                summerDrinkModal.classList.add('active'); // Show modal
+                modalContentDiv.innerHTML = `
+                    <div class="loading-indicator">
+                        <div class="loading-spinner"></div>
+                        <span>正在生成中...</span>
+                    </div>
+                `; // Show loading indicator
+
+                let chatHistory = [];
+                // Request Markdown format for better rendering
+                const prompt = "请推荐一款适合夏天的清凉饮品，包含配料和简单的制作步骤。请用中文回答，并确保饮品描述吸引人，使用Markdown格式，例如粗体、列表等。";
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Leave as empty string, Canvas will provide it at runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const markdownText = result.candidates[0].content.parts[0].text;
+                        // Use marked.js to convert Markdown to HTML
+                        const htmlContent = marked.parse(markdownText);
+                        modalContentDiv.innerHTML = `<div class="markdown-content">${htmlContent}</div>`;
+                    } else {
+                        modalContentDiv.innerHTML = '<p>抱歉，未能生成饮品推荐。请稍后再试。</p>';
+                        console.error('Gemini API response structure unexpected:', result);
+                    }
+                } catch (error) {
+                    modalContentDiv.innerHTML = '<p>生成推荐时发生错误。请检查网络连接或稍后再试。</p>';
+                    console.error('Error calling Gemini API:', error);
+                }
+            });
+
+            modalCloseBtn.addEventListener('click', () => {
+                summerDrinkModal.classList.remove('active'); // Hide modal
+            });
+
+            // Close modal when clicking outside content
+            summerDrinkModal.addEventListener('click', (event) => {
+                if (event.target === summerDrinkModal) {
+                    summerDrinkModal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
