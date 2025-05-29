@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>澳大利亚金秋探索之旅 - 行程建议</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light grey background for a soft feel */
+            color: #1f2937; /* Dark grey for text */
+            scroll-behavior: smooth;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8rem 2rem 6rem; /* Increased padding for more impact */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://placehold.co/1200x800/667eea/ffffff?text=澳洲风光剪影&font=Inter') no-repeat center center/cover;
+            opacity: 0.1; /* Subtle background image */
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title {
+            font-size: 3.5rem; /* Larger title */
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #374151; /* Slightly darker grey for titles */
+            margin-bottom: 2.5rem; /* Increased margin */
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #667eea; /* Accent color */
+            border-radius: 2px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 16px; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 5px 10px rgba(0,0,0,0.04); /* Softer, more layered shadow */
+            padding: 2rem; /* Increased padding */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            overflow: hidden; /* To contain pseudo-elements or images */
+        }
+        .card:hover {
+            transform: translateY(-8px); /* Slightly more lift on hover */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0,0,0,0.06);
+        }
+        .card-title {
+            font-size: 1.75rem; /* Larger card titles */
+            font-weight: 600;
+            color: #667eea; /* Accent color for card titles */
+            margin-bottom: 1rem;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e0e7ff; /* Lighter accent for tags */
+            color: #4f46e5; /* Darker accent for tag text */
+            padding: 0.3rem 0.8rem;
+            border-radius: 9999px; /* Pill shape */
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            padding-bottom: 1.5rem;
+            border-left: 2px solid #cbd5e1; /* Lighter grey for timeline */
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent; /* No line for the last item */
+            padding-bottom: 0;
+        }
+        .timeline-marker {
+            position: absolute;
+            left: -0.6rem; /* Adjust to center on line */
+            top: 0.1rem;
+            width: 1rem;
+            height: 1rem;
+            background-color: #667eea;
+            border-radius: 50%;
+            border: 3px solid white; /* Creates a nice border effect */
+        }
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background-color: #5a67d8;
+            transform: translateY(-2px);
+        }
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .glowing-effect {
+            position: relative;
+        }
+        .glowing-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102,126,234,0.2) 0%, rgba(102,126,234,0) 70%);
+            animation: pulseGlow 5s infinite ease-in-out;
+            z-index: -1; /* Behind the content */
+            pointer-events: none;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(0.8); opacity: 0.3; }
+            50% { transform: scale(1); opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in-down">澳大利亚金秋探索之旅</h1>
+            <p class="hero-subtitle animate-fade-in-up">为墨尔本婚礼之行增添一抹难忘的澳洲色彩，规划您的完美延伸旅程。</p>
+            <a href="#timeline" class="btn-primary animate-fade-in-up animation-delay-300">查看行程概览</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 md:py-20">
+
+        <section id="timeline" class="mb-16 md:mb-24 reveal">
+            <h2 class="section-title">您的行程概览</h2>
+            <div class="max-w-2xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <h3 class="font-semibold text-lg text-gray-700">8月30日 (周五)</h3>
+                    <p class="text-gray-600">抵达墨尔本，休整适应。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <h3 class="font-semibold text-lg text-gray-700">8月31日 (周六)</h3>
+                    <p class="text-gray-600">参加朋友的婚礼，共度美好时光。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker" style="background-color: #34d399;"></div> <h3 class="font-semibold text-lg text-green-600">9月1日 (周日) - 9月5日 (周四)</h3>
+                    <p class="text-gray-600 font-medium">🎉 自由探索时光！ (共5天) 🎉</p>
+                    <p class="text-sm text-gray-500">这是您规划额外旅行的黄金时间。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <h3 class="font-semibold text-lg text-gray-700">9月6日 (周五)</h3>
+                    <p class="text-gray-600">上午从墨尔本启程返航。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="destinations" class="mb-16 md:mb-24">
+            <h2 class="section-title reveal">目的地探索：澳洲之选</h2>
+            <p class="text-center text-gray-600 mb-10 md:mb-12 max-w-3xl mx-auto reveal">澳大利亚幅员辽阔，风情万种。考虑到您在墨尔本婚礼后的5天宝贵时间，我们为您精选了以下几个城市作为探索方向。请注意，8月底9月初是澳洲的冬末初春，各地气候有所不同。</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-10">
+                <div class="card reveal glowing-effect">
+                    <img src="https://placehold.co/600x400/5A67D8/FFFFFF?text=悉尼歌剧院与海港大桥&font=Inter" alt="悉尼风光" class="rounded-lg mb-6 w-full h-48 object-cover">
+                    <h3 class="card-title">悉尼 (Sydney) - 活力都市经典</h3>
+                    <div>
+                        <span class="tag">都市风光</span>
+                        <span class="tag">文化地标</span>
+                        <span class="tag">海滩休闲</span>
+                    </div>
+                    <p class="text-gray-600 my-4">作为澳大利亚最大城市，悉尼以其标志性的歌剧院、海港大桥和迷人海滩闻名于世。文化活动丰富，美食众多。</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
+                        <li><strong>气候：</strong>冬末初春，平均气温约 8-18°C，晴朗天气居多，较为舒适。</li>
+                        <li><strong>飞行：</strong>墨尔本出发约 1.5 小时。</li>
+                        <li><strong>亮点：</strong>悉尼歌剧院, 海港大桥, 邦迪海滩, 皇家植物园, 达令港。</li>
+                        <li><strong>建议：</strong>非常适合喜欢城市探索和地标打卡的游客。5天时间可以深度游玩。</li>
+                    </ul>
+                    <a href="#" class="btn-primary mt-2">了解悉尼更多</a>
+                </div>
+
+                <div class="card reveal glowing-effect">
+                     <img src="https://placehold.co/600x400/38A169/FFFFFF?text=凯恩斯大堡礁&font=Inter" alt="凯恩斯风光" class="rounded-lg mb-6 w-full h-48 object-cover">
+                    <h3 class="card-title">凯恩斯 (Cairns) - 热带天堂探秘</h3>
+                    <div>
+                        <span class="tag">大堡礁</span>
+                        <span class="tag">热带雨林</span>
+                        <span class="tag">自然奇观</span>
+                    </div>
+                    <p class="text-gray-600 my-4">通往大堡礁和古老热带雨林的门户。如果您热爱自然和水上活动，这里是绝佳选择。</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
+                        <li><strong>气候：</strong>热带气候，旱季末尾，平均气温约 18-26°C，阳光充足，适合水上活动。</li>
+                        <li><strong>飞行：</strong>墨尔本出发约 3-3.5 小时。</li>
+                        <li><strong>亮点：</strong>大堡礁潜水/浮潜, 库兰达热带雨林, 道格拉斯港, 空中缆车。</li>
+                        <li><strong>建议：</strong>适合寻求独特自然体验的游客。需注意大堡礁行程受天气影响。</li>
+                    </ul>
+                     <a href="#" class="btn-primary mt-2">探索凯恩斯魅力</a>
+                </div>
+
+                <div class="card reveal">
+                    <img src="https://placehold.co/600x400/DD6B20/FFFFFF?text=堪培拉国会大厦&font=Inter" alt="堪培拉风光" class="rounded-lg mb-6 w-full h-48 object-cover">
+                    <h3 class="card-title">堪培拉 (Canberra) - 文化历史首都</h3>
+                    <div>
+                        <span class="tag">首都风情</span>
+                        <span class="tag">博物馆</span>
+                        <span class="tag">艺术画廊</span>
+                    </div>
+                    <p class="text-gray-600 my-4">澳大利亚的首都，一座规划精良的城市，拥有众多国家级博物馆、美术馆和纪念馆。</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
+                        <li><strong>气候：</strong>内陆气候，早晚较冷，平均气温约 1-13°C，可能有霜冻。白天晴朗。</li>
+                        <li><strong>交通：</strong>墨尔本出发飞行约 1 小时，或火车/自驾约 7-8 小时。</li>
+                        <li><strong>亮点：</strong>国会大厦, 战争纪念馆, 国家美术馆, 国家博物馆, 格里芬湖。</li>
+                        <li><strong>建议：</strong>适合对历史文化感兴趣的游客。行程相对轻松，可与周边小镇结合。</li>
+                    </ul>
+                    <a href="#" class="btn-primary mt-2">发现堪培拉底蕴</a>
+                </div>
+
+                <div class="card reveal">
+                    <img src="https://placehold.co/600x400/718096/FFFFFF?text=珀斯天鹅河畔&font=Inter" alt="珀斯风光" class="rounded-lg mb-6 w-full h-48 object-cover">
+                    <h3 class="card-title">珀斯 (Perth) - 西澳阳光海岸</h3>
+                     <div>
+                        <span class="tag">西海岸</span>
+                        <span class="tag">阳光沙滩</span>
+                        <span class="tag">独特生态</span>
+                    </div>
+                    <p class="text-gray-600 my-4">西澳大利亚州首府，以其阳光明媚的海滩、国王公园和天鹅河而著称。但距离较远。</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1 mb-4">
+                        <li><strong>气候：</strong>地中海气候，冬末初春，平均气温约 8-19°C，天气温和。</li>
+                        <li><strong>飞行：</strong>墨尔本出发约 4-4.5 小时。</li>
+                        <li><strong>亮点：</strong>国王公园, 科特斯洛海滩, 弗里曼特尔, 罗特尼斯岛 (短尾矮袋鼠)。</li>
+                        <li><strong>建议：</strong>景色独特，但飞行时间长，5天行程会比较紧张，往返可能占用近一天。更适合时间充裕的旅行。</li>
+                    </ul>
+                    <a href="#" class="btn-primary mt-2">了解珀斯风情</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="tips" class="mb-16 md:mb-24">
+            <h2 class="section-title reveal">旅行温馨提示</h2>
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                <div class="card reveal p-6">
+                    <h4 class="font-semibold text-xl text-indigo-600 mb-3">✈️ 机票与住宿</h4>
+                    <p class="text-gray-600">8月底9月初仍是不错的出行时间。建议尽早预订澳洲境内段机票和住宿，尤其是计划前往热门地点如悉尼或凯恩斯，以获得更优价格和选择。</p>
+                </div>
+                <div class="card reveal p-6">
+                    <h4 class="font-semibold text-xl text-indigo-600 mb-3">🧥 衣物准备</h4>
+                    <p class="text-gray-600">澳洲此时处于冬末春初，昼夜温差较大。建议携带分层衣物：保暖外套、毛衣、长袖T恤。凯恩斯较暖和，可备夏装，但早晚也需薄外套。别忘了舒适的鞋子！</p>
+                </div>
+                <div class="card reveal p-6">
+                    <h4 class="font-semibold text-xl text-indigo-600 mb-3">☀️ 防晒与健康</h4>
+                    <p class="text-gray-600">澳洲紫外线强烈，即使在冬季和初春也不可忽视。请务必准备防晒霜、太阳镜和帽子。保持水分，注意休息。</p>
+                </div>
+                <div class="card reveal p-6">
+                    <h4 class="font-semibold text-xl text-indigo-600 mb-3">💳 货币与支付</h4>
+                    <p class="text-gray-600">澳大利亚使用澳元 (AUD)。信用卡和借记卡在澳洲广泛使用，但建议携带少量现金以备不时之需。支付宝和微信支付在华人聚集区也逐渐普及。</p>
+                </div>
+                 <div class="card reveal p-6">
+                    <h4 class="font-semibold text-xl text-indigo-600 mb-3">📱 通讯与网络</h4>
+                    <p class="text-gray-600">可以在机场或市区购买当地SIM卡（如Telstra, Optus, Vodafone）以获得数据和通话服务。多数酒店和咖啡馆提供免费Wi-Fi。</p>
+                </div>
+                 <div class="card reveal p-6">
+                    <h4 class="font-semibold text-xl text-indigo-600 mb-3">🌏 时差提醒</h4>
+                    <p class="text-gray-600">墨尔本、悉尼、堪培拉在9月初属于澳大利亚东部标准时间 (AEST, UTC+10)。凯恩斯也使用AEST。珀斯属于西部标准时间 (AWST, UTC+8)，比东部时间晚2小时。请注意跨时区旅行的时间调整。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="decision" class="mb-12 md:mb-20 text-center">
+            <h2 class="section-title reveal">如何选择您的完美旅程？</h2>
+            <div class="max-w-3xl mx-auto card reveal p-8">
+                <p class="text-gray-700 text-lg mb-6">选择哪个城市取决于您的团队偏好：</p>
+                <ul class="list-none space-y-4 text-left text-gray-600">
+                    <li>✨ <strong>追求经典与繁华？</strong> <strong class="text-indigo-600">悉尼</strong> 是不二之选，地标、文化、美食应有尽有。</li>
+                    <li>🐠 <strong>热爱自然与探险？</strong> <strong class="text-green-600">凯恩斯</strong> 的大堡礁和热带雨林将给您带来震撼体验。</li>
+                    <li>🏛️ <strong>钟情历史与艺术？</strong> <strong class="text-orange-600">堪培拉</strong> 的博物馆和国家机构值得细细品味。</li>
+                    <li>☀️ <strong>向往遥远西海岸？</strong> <strong class="text-gray-700">珀斯</strong> 虽美，但需仔细权衡飞行时间对短途旅行的影响。</li>
+                </ul>
+                <p class="text-gray-700 mt-8">
+                    综合考虑飞行时间、预算和兴趣点，建议在 <strong class="text-indigo-600">悉尼</strong> 或 <strong class="text-green-600">凯恩斯</strong> 中选择其一进行为期5天的深度游览。如果时间非常宝贵且不想长途飞行，<strong class="text-orange-600">堪培拉</strong> 也是一个不错的文化之旅选择。
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-10 text-center">
+        <p>&copy; 2025 澳洲旅行规划助手. 祝您旅途愉快！</p>
+        <p class="text-sm text-gray-400 mt-2">本建议仅供参考，请根据实际情况灵活调整。</p>
+    </footer>
+
+    <script>
+        // Simple scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: unobserve after revealing to save resources
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+        revealElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add simple fade in animations for hero elements for modern feel
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const heroButton = document.querySelector('.hero-section .btn-primary');
+
+            if(heroTitle) heroTitle.style.animation = 'fadeInDown 1s ease-out forwards';
+            if(heroSubtitle) heroSubtitle.style.animation = 'fadeInUp 1s 0.3s ease-out forwards';
+            if(heroButton) heroButton.style.animation = 'fadeInUp 1s 0.6s ease-out forwards';
+        });
+
+        // Keyframes for animations (could also be in CSS)
+        const styleSheet = document.createElement("style");
+        styleSheet.type = "text/css";
+        styleSheet.innerText = `
+            @keyframes fadeInDown {
+                0% { opacity: 0; transform: translateY(-20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeInUp {
+                0% { opacity: 0; transform: translateY(20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+    </script>
+</body>
+</html>
