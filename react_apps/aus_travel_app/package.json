@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build src/index.js --dist-dir ../../static/gemini/aus_travel_plan --public-url ./ --no-source-maps"
+    "build": "parcel build public/index.html --public-url ./ --no-source-maps"
   },
   "keywords": [],
   "author": "",
