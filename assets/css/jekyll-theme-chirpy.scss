@@ -1,14 +1,8 @@
 ---
 ---
+@use 'main';
 
-/* prettier-ignore */
-@use 'main' {
-  %- if jekyll.environment == 'production' -%
-    .bundle
-  %- endif -%
-};
-
-/* ====== 你的自定义样式写在下面 ====== */
+/* ====== 你的自定义样式 ====== */
 
 /* 让文章正文的段落首行自动缩进 2 个中文字符 */
 .content > p {
