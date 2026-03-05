@@ -1,20 +1,16 @@
 ---
 ---
+/* prettier-ignore */
+@use 'main{% if jekyll.environment == "production" %}.bundle{% endif %}';
 
-@use 'main' {
-  {%- if jekyll.environment == 'production' -%}
-    .bundle
-  {%- endif -%}
-};
+/* ====== 自定义样式 ====== */
 
-/* ====== 你的自定义样式 ====== */
-
-/* 仅限定在文章（article）的正文（content）段落应用缩进，避免污染全局排版 */
+/* 仅限定在文章的正文段落应用缩进，避免污染首页和侧边栏 */
 article .content > p {
   text-indent: 2em;
 }
 
-/* 修复：防止缩进影响到引用块里的文字 */
+/* 防止缩进影响到引用块里的文字 */
 article .content blockquote p {
   text-indent: 0;
 }
