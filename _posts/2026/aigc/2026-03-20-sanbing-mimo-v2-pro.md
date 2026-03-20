@@ -1,8 +1,9 @@
 ---
 title: 【AI生成】一篇由一个关于散兵，霍金，牢大等人的创作型提示词生成的抽象文章
-date: 2026-03-03 10:00:00 +0800
+date: 2026-03-20 10:30:00 +0800
 categories: [AI生成]
 tags: [AI生成,MIMO]
+math: true
 ---
 
 最近小米的MIMO-V2-Pro模型很火爆，笔者便去[LLMArena](https://github.com/lmarena/arena-hard-auto/blob/main/data/arena-hard-v2.0/question.jsonl)找来一些提示词进行测试。在测试中，发现如下终极抽象提示词，加上小米与之匹配的抽象回答。感觉甚好，遂贴于此处，供人鉴赏。
