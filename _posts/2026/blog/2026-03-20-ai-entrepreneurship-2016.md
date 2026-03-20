@@ -7,4 +7,4 @@ tags: [人工智能, Vibe Coding]
 
 大模型轶事一则，时也命也，但至少有梦？
 
-https://blog.youxu.info/2026/01/14/ai-codes-retrospective/
+[阅读原文](https://blog.youxu.info/2026/01/14/ai-codes-retrospective/)
